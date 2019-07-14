@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">ChoreTest</string>
+    <string name="title_activity_add_item">addItem</string>
+</resources>

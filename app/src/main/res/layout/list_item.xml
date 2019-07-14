@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/DescriptionTextr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chore:"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/description_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_toEndOf="@+id/DescriptionTextr"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/choretime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/DescriptionTextr"
+        android:layout_marginTop="12dp"
+        android:text="Length to do chore:" />
+
+    <TextView
+        android:id="@+id/length_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description_text"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="13dp"
+        android:layout_toEndOf="@+id/choretime"
+        android:text="TextView" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/removeChore"
+        android:layout_width="41dp"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@+id/DescriptionTextr"
+        android:layout_alignTop="@+id/description_text"
+        android:layout_marginStart="355dp"
+        android:layout_marginTop="11dp"
+        android:backgroundTint="#5294E2"
+        android:clickable="true"
+        app:backgroundTint="#00FF0000"
+        app:fabCustomSize="41dp"
+        app:rippleColor="#5294E2"
+        app:srcCompat="@android:drawable/ic_input_delete" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_below="@+id/length_text"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray" />
+        android:layout_marginTop="-56dp" /><![CDATA[
+
+    />
+
+
+
+]]>
+</RelativeLayout>
