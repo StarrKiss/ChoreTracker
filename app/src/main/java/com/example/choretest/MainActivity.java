@@ -103,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void changeUsers(View view){
+        Intent intent = new Intent(this, userSelection.class);
+
+        startActivity(intent);
+    }
+
 
 
 
