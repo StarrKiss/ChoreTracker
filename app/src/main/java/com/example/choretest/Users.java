@@ -26,7 +26,7 @@ public class Users extends userID{
     }
 
     public String getPoints() {
-        return "" + points;
+        return "" + points + "m";
     }
 
     public void setPoints(int points) {
