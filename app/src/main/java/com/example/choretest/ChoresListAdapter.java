@@ -1,5 +1,7 @@
 package com.example.choretest;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,10 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+
 
 public class ChoresListAdapter extends RecyclerView.Adapter<ChoresListAdapter.ViewHolder> {
 
@@ -27,12 +35,23 @@ public class ChoresListAdapter extends RecyclerView.Adapter<ChoresListAdapter.Vi
     public FirebaseFirestore dFirestore;
 
 
+    Context context;
+
+
+    public String userid;
+
+
+
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         return  new ViewHolder(view);
+
+
+
+
 
     }
 
@@ -47,6 +66,11 @@ public class ChoresListAdapter extends RecyclerView.Adapter<ChoresListAdapter.Vi
 
 
 
+
+
+
+
+
         holder.removeButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -55,6 +79,59 @@ public class ChoresListAdapter extends RecyclerView.Adapter<ChoresListAdapter.Vi
                // CharSequence rmText = "Chore Finished! Good job!";
 
                 //int duration = Toast.LENGTH_LONG;
+                DocumentReference doc =  dFirestore.collection("choreList").document(chore_id);
+
+                doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+
+
+                            //userid = "com.example.choretest.userID";
+
+                            userid = context.getSharedPreferences("com.example.choretest", context.MODE_PRIVATE).getString("userID", "");
+
+                            if(userid == "0"){
+
+                                DocumentReference ref =  dFirestore.collection("userList").document("anya");
+
+                                ref.update("points", FieldValue.increment(1));
+
+
+                            }
+                            else if (userid == "1"){
+                                DocumentReference ref =  dFirestore.collection("userList").document("daddy");
+
+                                ref.update("points", FieldValue.increment(1));
+
+                            }
+
+                            else if (userid == "2"){
+                                DocumentReference ref =  dFirestore.collection("userList").document("benjamin");
+
+                                ref.update("points", FieldValue.increment(1));
+
+                            }
+
+                            else if (userid == "3"){
+                                DocumentReference ref =  dFirestore.collection("userList").document("gregory");
+
+                                ref.update("points", FieldValue.increment(1));
+
+
+                            }
+
+                            else{
+
+                            }
+                        }
+                    }
+                });
+
+
+
+
 
                 choreList.remove(position);
 

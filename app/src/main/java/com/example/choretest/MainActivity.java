@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -20,6 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Chores> choreList;
 
+    public String selection;
+
+
 
 
     @Override
@@ -49,6 +56,30 @@ public class MainActivity extends AppCompatActivity {
         mMainList.setHasFixedSize(true);
         mMainList.setLayoutManager(new LinearLayoutManager(this));
         mMainList.setAdapter((ChoresListAdapter));
+
+        SharedPreferences prefs = this.getSharedPreferences("com.example.choretest", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+
+
+        if(prefs.getString("userID", "") == "") {
+            Intent intent = new Intent(this, userSelection.class);
+
+            startActivity(intent);
+
+
+            finishSelection();
+
+
+
+
+
+
+        }
+
+
+
+
 
 
 
@@ -103,11 +134,23 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void changeUsers(View view){
-        Intent intent = new Intent(this, userSelection.class);
+    void finishSelection(){
 
-        startActivity(intent);
+        SharedPreferences prefs = this.getSharedPreferences("com.example.choretest", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+
+        Intent mIntent = getIntent();
+
+        selection = mIntent.getStringExtra("selection");
+
+        editor.putString("userID", selection);
+
+        editor.commit();
+
+
     }
+
 
 
 

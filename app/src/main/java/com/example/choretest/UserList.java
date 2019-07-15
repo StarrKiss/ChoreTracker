@@ -102,6 +102,16 @@ public class UserList extends AppCompatActivity {
 
                     }
 
+                    if(doc.getType() == DocumentChange.Type.MODIFIED){
+
+                        Users users = doc.getDocument().toObject(Users.class).withId(doc.getDocument().getId());
+                        usersList.add(users);
+
+                        UsersListAdapter.notifyDataSetChanged();
+
+
+                    }
+
 
 
                 }

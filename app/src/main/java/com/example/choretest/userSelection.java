@@ -16,7 +16,7 @@ public class userSelection extends AppCompatActivity {
 
     public Spinner spinner;
 
-    public int pos;
+    public String userSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class userSelection extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 
 
-                pos = position;
+                userSelect = Long.toString(id);
 
 
 
@@ -58,9 +58,9 @@ public class userSelection extends AppCompatActivity {
     }
 
     public void returnToMain(View view){
-        Intent myIntent = new Intent(this, MainActivity.class);
-        myIntent.putExtra("selection", pos);
-        startActivity(myIntent);
+        Intent sendMessage = new Intent(this, MainActivity.class);
+        sendMessage.putExtra("selection", userSelect);
+        startActivity(sendMessage);
     }
 
 
