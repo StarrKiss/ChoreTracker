@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/rubik_medium"
-        android:text="Chore:"
+        android:text="Name:"
         android:textSize="18sp" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_below="@+id/name_text"
         android:layout_marginTop="13dp"
         android:fontFamily="@font/rubik_medium"
-        android:text="Length to do chore:" />
+        android:text="Points:" />
 
     <TextView
         android:id="@+id/points_text"
@@ -42,20 +42,7 @@
         android:fontFamily="@font/rubik"
         android:text="TextView" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/removeChore"
-        android:layout_width="41dp"
-        android:layout_height="match_parent"
-        android:layout_alignStart="@+id/name"
-        android:layout_alignTop="@+id/name_text"
-        android:layout_marginStart="355dp"
-        android:layout_marginTop="11dp"
-        android:backgroundTint="#5294E2"
-        android:clickable="true"
-        app:backgroundTint="#00FF0000"
-        app:fabCustomSize="41dp"
-        app:rippleColor="#cccccc"
-        app:srcCompat="@android:drawable/ic_input_delete" />
+
 
     <View
         android:id="@+id/view2"
@@ -64,7 +51,7 @@
         android:layout_below="@+id/points_text"
         android:layout_marginTop="8dp"
         android:background="@android:color/darker_gray" />
-        android:layout_marginTop="-56dp" /><![CDATA[
+    android:layout_marginTop="-56dp" /><![CDATA[
 
     />
 

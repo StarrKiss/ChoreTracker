@@ -1,19 +1,15 @@
 package com.example.choretest;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -90,8 +86,8 @@ public class ChoresListAdapter extends RecyclerView.Adapter<ChoresListAdapter.Vi
             super(itemView);
             mView = itemView;
 
-            descriptionText = (TextView) mView.findViewById(R.id.description_text);
-            lengthText = (TextView) mView.findViewById(R.id.length_text);
+            descriptionText = (TextView) mView.findViewById(R.id.name_text);
+            lengthText = (TextView) mView.findViewById(R.id.points_text);
             removeButton = (FloatingActionButton) mView.findViewById(R.id.removeChore);
         }
     }

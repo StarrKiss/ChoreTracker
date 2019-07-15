@@ -2,10 +2,14 @@ package com.example.choretest;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mMainList.setAdapter((ChoresListAdapter));
 
 
+
         mFirestore.collection("choreList").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -60,7 +65,11 @@ public class MainActivity extends AppCompatActivity {
                         Chores chores = doc.getDocument().toObject(Chores.class).withId(doc.getDocument().getId());
                         choreList.add(chores);
 
+
                         ChoresListAdapter.notifyDataSetChanged();
+
+
+
 
 
                     }
@@ -79,12 +88,23 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
+
     public void addDocument(View view){
         Intent intent = new Intent(this, additem.class);
 
         startActivity(intent);
 
     }
+
+    public void viewUsers(View view){
+        Intent intent = new Intent(this, UserList.class);
+
+        startActivity(intent);
+    }
+
+
+
 
 
 }
