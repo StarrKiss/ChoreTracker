@@ -9,9 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-
+import java.util.Comparator;
 
 
     public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.ViewHolder> {
@@ -29,16 +32,22 @@ import java.util.List;
 
 
 
+
+
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_item, parent, false);
             return  new ViewHolder(view);
 
+
         }
 
         @Override
         public void onBindViewHolder(@NonNull com.example.choretest.UsersListAdapter.ViewHolder holder, final int position) {
+
+            Collections.sort(userList, new userComparator());
+
             holder.nameText.setText(userList.get(position).getName());
             holder.pointText.setText(userList.get(position).getPoints());
 
@@ -64,6 +73,9 @@ import java.util.List;
 
             public TextView nameText;
             public TextView pointText;
+
+
+
 
 
             public ViewHolder(@NonNull View itemView) {

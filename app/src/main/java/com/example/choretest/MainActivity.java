@@ -3,6 +3,7 @@ package com.example.choretest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.DocumentChange;
@@ -22,6 +24,8 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -41,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
     public String selection;
 
+    public TextView name;
+
+    public TextView ifChores;
+
+
 
 
 
@@ -57,9 +66,17 @@ public class MainActivity extends AppCompatActivity {
         mMainList.setLayoutManager(new LinearLayoutManager(this));
         mMainList.setAdapter((ChoresListAdapter));
 
-        SharedPreferences prefs = this.getSharedPreferences("com.example.choretest", MODE_PRIVATE);
+        SharedPreferences prefs = this.getSharedPreferences("userShared", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
+        name = (TextView) findViewById(R.id.name);
+
+
+        String userid = prefs.getString("userID", "");
+
+        int count = count = mMainList.getAdapter().getItemCount();
+
+        ifChores = (TextView) findViewById(R.id.chorehere);
 
 
         if(prefs.getString("userID", "") == "") {
@@ -67,9 +84,23 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(intent);
 
+        }
 
-            finishSelection();
 
+        if(userid.equals("0")){
+
+            name.setText("Agnes!");
+
+        }
+        else if (userid.equals("1")){
+            name.setText("John!");
+
+        }
+
+        else if (userid.equals("2")){
+
+
+            name.setText("Benjamin!");
 
 
 
@@ -77,7 +108,23 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        else if (userid.equals("3")){
+            name.setText("Gregory!");
 
+        }
+
+        if( count > 1){
+            ifChores.setText("You have " + count + " chores!");
+
+        }
+
+        if (count == 1){
+            ifChores.setText("You have " + count + " chore!");
+        }
+        if(count == 0){
+            ifChores.setText("You have no chores! Good Job!");
+
+        }
 
 
 
@@ -99,6 +146,12 @@ public class MainActivity extends AppCompatActivity {
 
                         ChoresListAdapter.notifyDataSetChanged();
 
+                        int count = count = mMainList.getAdapter().getItemCount();
+
+
+                        ifChores.setText("You have " + count + " chores!");
+
+
 
 
 
@@ -110,6 +163,22 @@ public class MainActivity extends AppCompatActivity {
 
                         choreList.remove(chores);
                         ChoresListAdapter.notifyDataSetChanged();
+
+                        int count = count = mMainList.getAdapter().getItemCount();
+
+                        if( count > 1){
+                            ifChores.setText("You have" + count + "chores!");
+
+                        }
+
+                         if (count == 1){
+                            ifChores.setText("You have " + count + " chore!");
+                        }
+                        if(count == 0){
+                            ifChores.setText("You have no chores! Good Job!");
+
+                        }
+
 
                     }
                 }
@@ -134,22 +203,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void finishSelection(){
+    public void changeSettings(View view){
+        Intent intent = new Intent(this, settings.class);
 
-        SharedPreferences prefs = this.getSharedPreferences("com.example.choretest", MODE_PRIVATE);
-        SharedPreferences.Editor editor = prefs.edit();
-
-
-        Intent mIntent = getIntent();
-
-        selection = mIntent.getStringExtra("selection");
-
-        editor.putString("userID", selection);
-
-        editor.commit();
-
-
+        startActivity(intent);
     }
+
 
 
 

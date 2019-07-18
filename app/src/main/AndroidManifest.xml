@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".userSelection"></activity>
+        <activity android:name=".settings"></activity>
+        <activity android:name=".userSelection" />
         <activity android:name=".UserList" />
         <activity android:name=".additem" />
         <activity android:name=".MainActivity">

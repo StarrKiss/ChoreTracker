@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -59,8 +60,20 @@ public class userSelection extends AppCompatActivity {
 
     public void returnToMain(View view){
         Intent sendMessage = new Intent(this, MainActivity.class);
-        sendMessage.putExtra("selection", userSelect);
+
         startActivity(sendMessage);
+
+        SharedPreferences prefs = this.getSharedPreferences("userShared", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+
+        Intent mIntent = getIntent();
+
+
+        editor.putString("userID", userSelect);
+
+        editor.apply();
+
     }
 
 

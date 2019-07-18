@@ -1,5 +1,7 @@
 package com.example.choretest;
 
+import com.google.firebase.firestore.auth.User;
+
 public class Users extends userID{
 
     String name;
@@ -29,9 +31,16 @@ public class Users extends userID{
         return "" + points + "m";
     }
 
+    public int getComparePoints(){
+        return points;
+    }
+
     public void setPoints(int points) {
         this.points = points;
     }
+
+
+
 
 }
 
